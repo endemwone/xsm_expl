@@ -1,0 +1,13 @@
+begin
+    a=1;
+    while(a<=10)
+    do
+    if (a==4)
+    then
+    a=a+1;
+    continue;
+    endif;
+    write(a);
+    a=a+1;
+    endwhile;
+end

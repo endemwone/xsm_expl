@@ -1,0 +1,11 @@
+begin
+    read(n);
+    a=1;
+    s=0;
+    repeat
+        read(b);
+        s=s+b;
+        a=a+1;
+    until (a>n);
+    write(s);
+end
