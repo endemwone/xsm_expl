@@ -9,12 +9,11 @@
 
 %%
 
-"L"[0-9]+[:]  {
-                    label = 1;
+L[0-9]+:\n  {
+                    if (first) {
                     char *label_name = malloc(strlen(yytext));
                     strcpy(label_name, yytext);
-                    label_name[strlen(yytext) - 1] = '\0';
-                    if (first) {
+                    label_name[strlen(yytext) - 2] = '\0';
                         append(label_name, addr);
                         addr -= 2;
                     }
@@ -48,16 +47,12 @@
                     }
                 }
 
-"\n" {
+\n {
     addr += 2;
     if (!first) {
-        if (!label) {
             fprintf(fp,"\n");
-        } else {
-            label = 0;
         }
     }
-}
 
 . {
     if (!first) {
