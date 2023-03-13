@@ -4,3 +4,5 @@ y.tab.h
 .vscode
 output.xsm
 translated.xsm
+input*.xpl
+out
