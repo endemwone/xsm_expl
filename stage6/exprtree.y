@@ -93,7 +93,7 @@ Program: TypeDefBlock GDeclBlock FnDefBlock MainBlock {
 
             generateHeader(ft);
 
-            codeGen($1, $1->GSTentry->LST, ft);
+            codeGen($2, $2->GSTentry->LST, ft);
 
             fclose(ft);
             exit(0);
@@ -129,6 +129,7 @@ Body: BEGIN_ Stmt_list RETURN_ stringExpr ';' END_ {
 
 //---------------------------------TYPE DEFINITIONS--------------------------------
 TypeDefBlock  : TYPE_ TypeDefList ENDTYPE_ {TTPrint();}
+              | {TTPrint();}
 
 TypeDefList   : TypeDefList TypeDef
               | TypeDef
@@ -147,7 +148,8 @@ TypeDef       : ID_ '{' FieldDeclList '}' {
                             if (strcmp($1->name, f->type->name) == 0) {
                                 f->type = type;
                             } else {
-                                printf("Error: Invalid type %s\n", f->type->name);
+                                printf("Error: Invalid type \"%s\"\n", f->type->name);
+                                exit(1);
                             }
                         }
                         f = f->next;
@@ -302,7 +304,7 @@ LDeclBlock: DECL_ LDeclList ENDDECL_ {
                 LSTPrint(lst);
                 $$ = NULL;
             }
-            | %empty {
+            | {
                 lst = LSTParamInstall(lst, Phead);
                 LSTPrint(lst);
                 $$ = NULL;
@@ -550,7 +552,6 @@ int main(int argc, char *argv[])
     Phead = NULL;
     FL = FLInit();
     TTCreate();
-    printf("Type Table Created\n");
 
     yyin=fopen(argv[1],"r");
     ft = fopen("output.xsm", "w");

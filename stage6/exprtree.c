@@ -1,4 +1,4 @@
-// #include "exprtree.h"
+#include "exprtree.h"
 
 struct GST_Node *Ghead = NULL;
 struct Typetable *Thead = NULL;

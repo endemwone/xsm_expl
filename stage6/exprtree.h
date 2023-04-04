@@ -1,3 +1,6 @@
+#ifndef _EXPTREE_H
+#define _EXPTREE_H
+
 #include <stdio.h>
 #include <string.h>
 
@@ -182,3 +185,5 @@ void freeReg();
 int getLabel();
 int getFlabel(char name);
 int setFlabel();
+
+#endif
