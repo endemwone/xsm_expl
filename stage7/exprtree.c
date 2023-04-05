@@ -1587,7 +1587,7 @@ int codeGen(struct AST_Node *t, struct LSTable *LST, struct ClassTable *class, F
         fprintf(target_file, "POP R%d\n", p);
         // Pop arguments
         q = getReg();
-        for (int i = 0; i < numArgs + 1; i++)
+        for (int i = 0; i < numArgs + 1; i++) // +1 for self
             fprintf(target_file, "POP R%d\n", q);
         freeReg();
         // Pop registers in use
